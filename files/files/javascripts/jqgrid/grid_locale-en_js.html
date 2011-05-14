@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>File: grid.locale-en.js [RDoc Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='file' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>grid.locale-en.js</h1>
+        <div class='paths'>
+          files/javascripts/jqgrid/grid.locale-en.js
+        </div>
+        <div class='last-update'>
+          Last Update:
+          <span class='datetime'>2011-05-14 13:30:57 -0700</span>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            ;(function($){ /**
+            </p>
+            <pre>* jqGrid English Translation&#x000A;* Tony Tomov tony@trirand.com&#x000A;* http://trirand.com/blog/&#x000A;* Dual licensed under the MIT and GPL licenses:&#x000A;* http://www.opensource.org/licenses/mit-license.php&#x000A;* http://www.gnu.org/licenses/gpl.html</pre>
+            <p>
+            **/ $.jgrid = {
+            </p>
+            <pre>defaults : {&#x000A;        recordtext: &quot;View {0} - {1} of {2}&quot;,&#x000A;        emptyrecords: &quot;No records to view&quot;,&#x000A;        loadtext: &quot;Loading...&quot;,&#x000A;        pgtext : &quot;Page {0} of {1}&quot;&#x000A;},&#x000A;search : {&#x000A;        caption: &quot;Search...&quot;,&#x000A;        Find: &quot;Find&quot;,&#x000A;        Reset: &quot;Reset&quot;,&#x000A;        odata : ['equal', 'not equal', 'less', 'less or equal','greater','greater or equal', 'begins with','does not begin with','is in','is not in','ends with','does not end with','contains','does not contain'],&#x000A;        groupOps: [   { op: &quot;AND&quot;, text: &quot;all&quot; },       { op: &quot;OR&quot;,  text: &quot;any&quot; }    ],&#x000A;        matchText: &quot; match&quot;,&#x000A;        rulesText: &quot; rules&quot;&#x000A;},&#x000A;edit : {&#x000A;        addCaption: &quot;Add Record&quot;,&#x000A;        editCaption: &quot;Edit Record&quot;,&#x000A;        bSubmit: &quot;Submit&quot;,&#x000A;        bCancel: &quot;Cancel&quot;,&#x000A;        bClose: &quot;Close&quot;,&#x000A;        saveData: &quot;Data has been changed! Save changes?&quot;,&#x000A;        bYes : &quot;Yes&quot;,&#x000A;        bNo : &quot;No&quot;,&#x000A;        bExit : &quot;Cancel&quot;,&#x000A;        msg: {&#x000A;                required:&quot;Field is required&quot;,&#x000A;                number:&quot;Please, enter valid number&quot;,&#x000A;                minValue:&quot;value must be greater than or equal to &quot;,&#x000A;                maxValue:&quot;value must be less than or equal to&quot;,&#x000A;                email: &quot;is not a valid e-mail&quot;,&#x000A;                integer: &quot;Please, enter valid integer value&quot;,&#x000A;                date: &quot;Please, enter valid date value&quot;,&#x000A;                url: &quot;is not a valid URL. Prefix required ('http://' or 'https://')&quot;,&#x000A;                nodefined : &quot; is not defined!&quot;,&#x000A;                novalue : &quot; return value is required!&quot;,&#x000A;                customarray : &quot;Custom function should return array!&quot;,&#x000A;                customfcheck : &quot;Custom function should be present in case of custom checking!&quot;&#x000A;&#x000A;        }&#x000A;},&#x000A;view : {&#x000A;        caption: &quot;View Record&quot;,&#x000A;        bClose: &quot;Close&quot;&#x000A;},&#x000A;del : {&#x000A;        caption: &quot;Delete&quot;,&#x000A;        msg: &quot;Delete selected record(s)?&quot;,&#x000A;        bSubmit: &quot;Delete&quot;,&#x000A;        bCancel: &quot;Cancel&quot;&#x000A;},&#x000A;nav : {&#x000A;        edittext: &quot;&quot;,&#x000A;        edittitle: &quot;Edit selected row&quot;,&#x000A;        addtext:&quot;&quot;,&#x000A;        addtitle: &quot;Add new row&quot;,&#x000A;        deltext: &quot;&quot;,&#x000A;        deltitle: &quot;Delete selected row&quot;,&#x000A;        searchtext: &quot;&quot;,&#x000A;        searchtitle: &quot;Find records&quot;,&#x000A;        refreshtext: &quot;&quot;,&#x000A;        refreshtitle: &quot;Reload Grid&quot;,&#x000A;        alertcap: &quot;Warning&quot;,&#x000A;        alerttext: &quot;Please, select row&quot;,&#x000A;        viewtext: &quot;&quot;,&#x000A;        viewtitle: &quot;View selected row&quot;&#x000A;},&#x000A;col : {&#x000A;        caption: &quot;Select columns&quot;,&#x000A;        bSubmit: &quot;Ok&quot;,&#x000A;        bCancel: &quot;Cancel&quot;&#x000A;},&#x000A;errors : {&#x000A;        errcap : &quot;Error&quot;,&#x000A;        nourl : &quot;No url is set&quot;,&#x000A;        norecords: &quot;No records to process&quot;,&#x000A;        model : &quot;Length of colNames &lt;&gt; colModel!&quot;&#x000A;},&#x000A;formatter : {&#x000A;        integer : {thousandsSeparator: &quot; &quot;, defaultValue: '0'},&#x000A;        number : {decimalSeparator:&quot;.&quot;, thousandsSeparator: &quot; &quot;, decimalPlaces: 2, defaultValue: '0.00'},&#x000A;        currency : {decimalSeparator:&quot;.&quot;, thousandsSeparator: &quot; &quot;, decimalPlaces: 2, prefix: &quot;&quot;, suffix:&quot;&quot;, defaultValue: '0.00'},&#x000A;        date : {&#x000A;                dayNames:   [&#x000A;                        &quot;Sun&quot;, &quot;Mon&quot;, &quot;Tue&quot;, &quot;Wed&quot;, &quot;Thr&quot;, &quot;Fri&quot;, &quot;Sat&quot;,&#x000A;                        &quot;Sunday&quot;, &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;, &quot;Saturday&quot;&#x000A;                ],&#x000A;                monthNames: [&#x000A;                        &quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;, &quot;Jul&quot;, &quot;Aug&quot;, &quot;Sep&quot;, &quot;Oct&quot;, &quot;Nov&quot;, &quot;Dec&quot;,&#x000A;                        &quot;January&quot;, &quot;February&quot;, &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;June&quot;, &quot;July&quot;, &quot;August&quot;, &quot;September&quot;, &quot;October&quot;, &quot;November&quot;, &quot;December&quot;&#x000A;                ],&#x000A;                AmPm : [&quot;am&quot;,&quot;pm&quot;,&quot;AM&quot;,&quot;PM&quot;],&#x000A;                S: function (j) {return j &lt; 11 || j &gt; 13 ? ['st', 'nd', 'rd', 'th'][Math.min((j - 1) % 10, 3)] : 'th'},&#x000A;                srcformat: 'Y-m-d',&#x000A;                newformat: 'd/m/Y',&#x000A;                masks : {&#x000A;                        ISO8601Long:&quot;Y-m-d H:i:s&quot;,&#x000A;                        ISO8601Short:&quot;Y-m-d&quot;,&#x000A;                        ShortDate: &quot;n/j/Y&quot;,&#x000A;                        LongDate: &quot;l, F d, Y&quot;,&#x000A;                        FullDateTime: &quot;l, F d, Y g:i:s A&quot;,&#x000A;                        MonthDay: &quot;F d&quot;,&#x000A;                        ShortTime: &quot;g:i A&quot;,&#x000A;                        LongTime: &quot;g:i:s A&quot;,&#x000A;                        SortableDateTime: &quot;Y-m-d\\TH:i:s&quot;,&#x000A;                        UniversalSortableDateTime: &quot;Y-m-d H:i:sO&quot;,&#x000A;                        YearMonth: &quot;F, Y&quot;&#x000A;                },&#x000A;                reformatAfterEdit : false&#x000A;        },&#x000A;        baseLinkUrl: '',&#x000A;        showAction: '',&#x000A;        target: '',&#x000A;        checkbox : {disabled:true},&#x000A;        idName : 'id'&#x000A;}</pre>
+            <p>
+            }; })(jQuery);
+            </p>
+          </div>
+          <div id='section'>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

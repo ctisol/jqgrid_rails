@@ -54,11 +54,21 @@
                   <span class='name'>jqgrid</span>
                   <span class='arguments'>(grid)</span>
                 </div>
+                <div class='description'>
+                  <table>
+                  <tr><td valign="top">grid:</td><td><a href="JqGrid.html">JqGridRails::JqGrid</a> instance
+                  
+                  </td></tr>
+                  </table>
+                  <p>
+                  Outputs javascript to build grid
+                  </p>
+                </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000001-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000001-source'><span class="ruby-comment cmt"># File lib/jqgrid_rails/jqgrid_rails_generators.rb, line 4</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">jqgrid</span>(<span class="ruby-identifier">grid</span>)&#x000A;      <span class="ruby-keyword kw">self</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">grid</span>.<span class="ruby-identifier">build</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000001-source'><span class="ruby-comment cmt"># File lib/jqgrid_rails/jqgrid_rails_generators.rb, line 6</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">jqgrid</span>(<span class="ruby-identifier">grid</span>)&#x000A;      <span class="ruby-keyword kw">self</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">grid</span>.<span class="ruby-identifier">build</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-instance' id='method-M000002'>
@@ -67,11 +77,21 @@
                   <span class='name'>reload_grid</span>
                   <span class='arguments'>(dom_id)</span>
                 </div>
+                <div class='description'>
+                  <table>
+                  <tr><td valign="top">dom_id:</td><td>DOM ID of grid
+                  
+                  </td></tr>
+                  </table>
+                  <p>
+                  Instructs grid to reload itself
+                  </p>
+                </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000002-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000002-source'><span class="ruby-comment cmt"># File lib/jqgrid_rails/jqgrid_rails_generators.rb, line 8</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reload_grid</span>(<span class="ruby-identifier">dom_id</span>)&#x000A;      <span class="ruby-identifier">dom_id</span> = <span class="ruby-node">&quot;##{dom_id}&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">dom_id</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-value str">'#'</span>)&#x000A;      <span class="ruby-keyword kw">self</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;jQuery('#{dom_id}').trigger('reloadGrid');&quot;</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000002-source'><span class="ruby-comment cmt"># File lib/jqgrid_rails/jqgrid_rails_generators.rb, line 12</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reload_grid</span>(<span class="ruby-identifier">dom_id</span>)&#x000A;      <span class="ruby-identifier">dom_id</span> = <span class="ruby-node">&quot;##{dom_id}&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">dom_id</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-value str">'#'</span>)&#x000A;      <span class="ruby-keyword kw">self</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;jQuery('#{dom_id}').trigger('reloadGrid');&quot;</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>

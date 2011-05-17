@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>File: usage.rdoc [RDoc Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='file' id='wrapper'>
+      <div class='header'>
+        <div class='name'>usage.rdoc</div>
+        <div class='paths'>
+          examples/usage.rdoc
+        </div>
+        <div class='last-update'>
+          Last Update:
+          <span class='datetime'>Tue May 17 13:38:54 -0700 2011</span>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <h1><a href="../../classes/JqGridRails.html">JqGridRails</a> Usage</h1>
+            <h2>Building the grid</h2>
+            <p>
+            First we need to build the grid. In our controller, we build the grid
+            object.
+            </p>
+            <pre># app/controllers/grids_controller.rb&#x000A;class GridsController &lt; ApplicationController&#x000A;  def show&#x000A;    respond_to do |format|&#x000A;      format.html do&#x000A;        @grid = JqGridRails::Grid.new('test_grid',&#x000A;          :url =&gt; grids_url,&#x000A;          :height =&gt; '100%',&#x000A;          :width =&gt; 300,&#x000A;          :caption =&gt; 'Test',&#x000A;          :pager =&gt; true,&#x000A;          :row_num =&gt; 10,&#x000A;          :autowidth =&gt; true&#x000A;        )&#x000A;        @grid.add_column('Name', 'name')&#x000A;      end&#x000A;    end&#x000A;  end&#x000A;end</pre>
+            <p>
+            And we need our basic view:
+            </p>
+            <pre># app/controllers/grids/show.html.erb&#x000A;&lt;div class=&quot;title&quot;&gt;Grid Test&lt;/div&gt;&#x000A;&lt;%= jqgrid(@grid) %&gt;</pre>
+            <p>
+            This will now build a jqGrid on the grids show page. The jqgrid method is
+            added to the ActionView helper methods and will output the required HTML
+            and javascript to display the grid. Lets look more closely at the creation
+            of the grid object.
+            </p>
+            <p>
+            The first parameter of the Grid initializer is the DOM ID for the grid.
+            This is important if you are displaying multiple grids on the same page.
+            While it will work displaying multiple grids with the same DOM ID, the
+            functionality is undefined and things will break. In most cases, any
+            actions taking on the grid will only affect the grid that is defined first
+            within the DOM.
+            </p>
+            <h3>Options Hash</h3>
+            <p>
+            The second parameter for the Grid initializer is a Hash of options for the
+            grid. A full list of available options can be found on the [jqGrid options
+            wiki page]{<a
+            href="http://www.trirand.com/jqgridwiki/doku.php?id=wiki:options">www.trirand.com/jqgridwiki/doku.php?id=wiki:options</a>}.
+            Looking at the options page, you will notice that the options defined there
+            look slightly different. This is because the Grid object will format the
+            options when building the grid for writing. There are a few key points to
+            remember.
+            </p>
+            <ul>
+            <li>Option keys can be defined in symbol or string form.
+            
+            <ul>
+            <li>Symbols will be mapped like so:
+            
+            <pre>:row_num =&gt; 10 -&gt; rowNum : 10&#x000A;:rowNum =&gt; 10 -&gt; rowNum : 10</pre>
+            </li>
+            <li>Strings will be mapped directly:
+            
+            <pre>'rowNum' =&gt; 10 -&gt; 'rowNum' : 10</pre>
+            </li>
+            </ul>
+            </li>
+            <li>Type matters!
+            
+            <ul>
+            <li>Symbols will be written as literals in JavaScript
+            
+            </li>
+            <li>Strings will be written as string with their content escaped
+            
+            <ul>
+            <li>Functions are a special case. Strings begining with &#8216;function &#8217;
+            will be written as is with no escaping
+            
+            </li>
+            </ul>
+            </li>
+            <li>Booleans and Fixnums will be converted to the proper Javascript type
+            
+            </li>
+            </ul>
+            </li>
+            <li>Nesting is allowed (and encouraged)
+            
+            </li>
+            </ul>
+            <p>
+            The last point is key. Many options with jqGrid are defined upon
+            initialization through nested Hashes or Arrays. <a
+            href="../../classes/JqGridRails.html">JqGridRails</a> will properly convert
+            these nested options from Ruby to JavaScript.
+            </p>
+            <h3>Populating the grid</h3>
+            <p>
+            At this point the grid is building on the page, but it is not being
+            populated. This is because the grid is attempting to request the data from
+            the show method. Two options exist for providing this data. The actual data
+            structure can be built, to_json called and the value returned, or the
+            grid_response method can be used. Since this is a basic grid, we will use
+            the grid_response. So, lets expand the show method we already defined:
+            </p>
+            <pre># app/controllers/grids_controller.rb&#x000A;class GridsController &lt; ApplicationController&#x000A;  def show&#x000A;    respond_to do |format|&#x000A;      format.html do&#x000A;        @grid = JqGridRails::Grid.new('test_grid',&#x000A;          :url =&gt; grids_url,&#x000A;          :height =&gt; '100%',&#x000A;          :width =&gt; 300,&#x000A;          :caption =&gt; 'Test',&#x000A;          :pager =&gt; true,&#x000A;          :row_num =&gt; 10,&#x000A;          :autowidth =&gt; true&#x000A;        )&#x000A;        @grid.add_column('Name', 'name')&#x000A;      end&#x000A;      format.json do&#x000A;        grid_response(Grid, params, ['name'])&#x000A;      end&#x000A;    end&#x000A;  end&#x000A;end</pre>
+            <p>
+            The grid_response method will use the request parameters to build the
+            proper response. It will provide the result properly paginated and sorted
+            based on the user request. The first parameter for the grid_response must
+            be an ActiveRecord::Base, ActiveRecord::Relationor and
+            ActiveRecord::NamedScope::Scope. The second parameter are the parameters
+            provided to via the request. And the third parameter is an Array or Hash of
+            information related to the columns. Lets start by taking a closer look at
+            the first paramter.
+            </p>
+            <h3>Scoping</h3>
+            <p>
+            The first parameter is what we are actually querying against. For simple
+            tables (as is this case), simply providing the class is all that will be
+            required. The grid_response method will properly paginate and order the
+            results based on user requests. However, there are times where eager
+            loading may be required, or conditions need to be provided. To provide this
+            functionality, the grid_response can take an
+            ActiveRecord::NamedScope::Scope (in Rails 3 using arel, everything is an
+            ActiveRecord::Relation). So, lets say that our Grid model belongs to a
+            Table model with a &#8216;title&#8217; attribute and lets further say that
+            we only want to show grid&#8217;s with the table title of &#8216;My
+            Grid&#8217;. Scoping makes this possible. Now, our show method looks like
+            this:
+            </p>
+            <pre># app/controllers/grids_controller.rb&#x000A;class GridsController &lt; ApplicationController&#x000A;  def show&#x000A;    respond_to do |format|&#x000A;      format.html do&#x000A;        @grid = JqGridRails::Grid.new('test_grid',&#x000A;          :url =&gt; grids_url,&#x000A;          :height =&gt; '100%',&#x000A;          :width =&gt; 300,&#x000A;          :caption =&gt; 'Test',&#x000A;          :pager =&gt; true,&#x000A;          :row_num =&gt; 10,&#x000A;          :autowidth =&gt; true&#x000A;        )&#x000A;        @grid.add_column('Name', 'name')&#x000A;      end&#x000A;      format.json do&#x000A;        grid_response(&#x000A;          Grid.scoped(&#x000A;            :include =&gt; :table,&#x000A;            :conditions =&gt; {&quot;#{Table.table_name}.title&quot; =&gt; 'My Grid'}&#x000A;          ), params, ['name']&#x000A;        )&#x000A;      end&#x000A;    end&#x000A;  end&#x000A;end</pre>
+          </div>
+          <div id='section'>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

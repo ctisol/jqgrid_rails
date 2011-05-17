@@ -41,9 +41,9 @@
             <h2>Methods</h2>
             <h3>public instance</h3>
             <ol>
-              <li><a href="#M000009">jqgrid</a></li>
-              <li><a href="#M000010">jqgrid_addrow</a></li>
-              <li><a href="#M000008">jqgrid_html</a></li>
+              <li><a href="#M000012">jqgrid</a></li>
+              <li><a href="#M000013">jqgrid_addrow</a></li>
+              <li><a href="#M000011">jqgrid_html</a></li>
             </ol>
           </div>
           <div id='context'>
@@ -59,8 +59,8 @@
           <div id='section'>
             <div id='methods'>
               <h2>Public instance methods</h2>
-              <div class='method public-instance' id='method-M000009'>
-                <a name='M000009'></a>
+              <div class='method public-instance' id='method-M000012'>
+                <a name='M000012'></a>
                 <div class='synopsis'>
                   <span class='name'>jqgrid</span>
                   <span class='arguments'>(grid)</span>
@@ -76,27 +76,27 @@
                   </p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000009-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000012-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000009-source'><span class="ruby-comment cmt"># File lib/jqgrid_rails/jqgrid_rails_view.rb, line 24</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">jqgrid</span>(<span class="ruby-identifier">grid</span>)&#x000A;      <span class="ruby-identifier">output</span> = <span class="ruby-identifier">jqgrid_html</span>(<span class="ruby-identifier">grid</span>)&#x000A;      <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">javascript_tag</span>(<span class="ruby-identifier">grid</span>.<span class="ruby-identifier">build</span>)&#x000A;      <span class="ruby-identifier">output</span>.<span class="ruby-identifier">html_safe</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000012-source'><span class="ruby-comment cmt"># File lib/jqgrid_rails/jqgrid_rails_view.rb, line 24</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">jqgrid</span>(<span class="ruby-identifier">grid</span>)&#x000A;      <span class="ruby-identifier">output</span> = <span class="ruby-identifier">jqgrid_html</span>(<span class="ruby-identifier">grid</span>)&#x000A;      <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">javascript_tag</span>(<span class="ruby-identifier">grid</span>.<span class="ruby-identifier">build</span>)&#x000A;      <span class="ruby-identifier">output</span>.<span class="ruby-identifier">html_safe</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000010'>
-                <a name='M000010'></a>
+              <div class='method public-instance' id='method-M000013'>
+                <a name='M000013'></a>
                 <div class='synopsis'>
                   <span class='name'>jqgrid_addrow</span>
                   <span class='arguments'>(dom_id, idx, row_hash)</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000010-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000013-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000010-source'><span class="ruby-comment cmt"># File lib/jqgrid_rails/jqgrid_rails_view.rb, line 32</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">jqgrid_addrow</span>(<span class="ruby-identifier">dom_id</span>, <span class="ruby-identifier">idx</span>, <span class="ruby-identifier">row_hash</span>)&#x000A;      <span class="ruby-node">&quot;jQuery(\&quot;##{dom_id}\&quot;).add_row(#{format_type_to_js(idx)}, #{format_type_to_js(row_hash)});&quot;</span>.<span class="ruby-identifier">html_safe</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000013-source'><span class="ruby-comment cmt"># File lib/jqgrid_rails/jqgrid_rails_view.rb, line 32</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">jqgrid_addrow</span>(<span class="ruby-identifier">dom_id</span>, <span class="ruby-identifier">idx</span>, <span class="ruby-identifier">row_hash</span>)&#x000A;      <span class="ruby-node">&quot;jQuery(\&quot;##{dom_id}\&quot;).add_row(#{format_type_to_js(idx)}, #{format_type_to_js(row_hash)});&quot;</span>.<span class="ruby-identifier">html_safe</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000008'>
-                <a name='M000008'></a>
+              <div class='method public-instance' id='method-M000011'>
+                <a name='M000011'></a>
                 <div class='synopsis'>
                   <span class='name'>jqgrid_html</span>
                   <span class='arguments'>(grid)</span>
@@ -112,10 +112,10 @@
                   </p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000008-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000011-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000008-source'><span class="ruby-comment cmt"># File lib/jqgrid_rails/jqgrid_rails_view.rb, line 11</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">jqgrid_html</span>(<span class="ruby-identifier">grid</span>)&#x000A;      <span class="ruby-identifier">output</span> = <span class="ruby-node">&quot;&lt;table id=\&quot;#{grid.table_id}\&quot;&gt;&lt;/table&gt;&quot;</span>&#x000A;      <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">grid</span>.<span class="ruby-identifier">has_link_toolbar?</span>)&#x000A;        <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;div id=\&quot;#{grid.table_id}_linkbar\&quot; class=\&quot;jqgrid_linkbar\&quot;&gt;&lt;/div&gt;&quot;</span>&#x000A;      <span class="ruby-keyword kw">end</span>&#x000A;      <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">grid</span>.<span class="ruby-identifier">has_pager?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">grid</span>.<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:pager</span>] <span class="ruby-operator">==</span> <span class="ruby-node">&quot;#{grid.table_id}_pager&quot;</span>)&#x000A;        <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;div id=\&quot;#{grid.options[:pager]}\&quot;&gt;&lt;/div&gt;&quot;</span>&#x000A;      <span class="ruby-keyword kw">end</span>&#x000A;      <span class="ruby-identifier">output</span>.<span class="ruby-identifier">html_safe</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000011-source'><span class="ruby-comment cmt"># File lib/jqgrid_rails/jqgrid_rails_view.rb, line 11</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">jqgrid_html</span>(<span class="ruby-identifier">grid</span>)&#x000A;      <span class="ruby-identifier">output</span> = <span class="ruby-node">&quot;&lt;table id=\&quot;#{grid.table_id}\&quot;&gt;&lt;/table&gt;&quot;</span>&#x000A;      <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">grid</span>.<span class="ruby-identifier">has_link_toolbar?</span>)&#x000A;        <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;div id=\&quot;#{grid.table_id}_linkbar\&quot; class=\&quot;jqgrid_linkbar\&quot;&gt;&lt;/div&gt;&quot;</span>&#x000A;      <span class="ruby-keyword kw">end</span>&#x000A;      <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">grid</span>.<span class="ruby-identifier">has_pager?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">grid</span>.<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:pager</span>] <span class="ruby-operator">==</span> <span class="ruby-node">&quot;#{grid.table_id}_pager&quot;</span>)&#x000A;        <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;div id=\&quot;#{grid.options[:pager]}\&quot;&gt;&lt;/div&gt;&quot;</span>&#x000A;      <span class="ruby-keyword kw">end</span>&#x000A;      <span class="ruby-identifier">output</span>.<span class="ruby-identifier">html_safe</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>

@@ -131,8 +131,9 @@
                   <tr><td valign="top">table_id:</td><td>DOM ID of table for grid to use
                   
                   </td></tr>
-                  <tr><td valign="top">args:</td><td>Hash of [jqGrid options]{<a
-                  href="http://www.trirand.com/jqgridwiki/doku.php?id=wiki:options">www.trirand.com/jqgridwiki/doku.php?id=wiki:options</a>}
+                  <tr><td valign="top">args:</td><td>Hash of <a
+                  href="http://www.trirand.com/jqgridwiki/doku.php?id=wiki:options">jqGrid
+                  options</a>
                   
                   </td></tr>
                   </table>
@@ -159,8 +160,9 @@
                   <tr><td valign="top">attr:</td><td>Attribute of model (invoice_num)
                   
                   </td></tr>
-                  <tr><td valign="top">args:</td><td>Hash of [colModel options]{<a
-                  href="http://www.trirand.com/jqgridwiki/doku.php?id=wiki:colmodel_options">www.trirand.com/jqgridwiki/doku.php?id=wiki:colmodel_options</a>}
+                  <tr><td valign="top">args:</td><td>Hash of <a
+                  href="http://www.trirand.com/jqgridwiki/doku.php?id=wiki:colmodel_options">colModel
+                  options</a>
                   
                   </td></tr>
                   </table>
@@ -236,7 +238,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000030-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000030-source'><span class="ruby-comment cmt"># File lib/jqgrid_rails/jqgrid.rb, line 198</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_toolbar_button</span>(<span class="ruby-identifier">url_hash</span>)&#x000A;      <span class="ruby-identifier">classes</span> = [<span class="ruby-value str">'grid_toolbar_item'</span>, <span class="ruby-value str">'button'</span>]&#x000A;      <span class="ruby-identifier">s</span> = <span class="ruby-value str">&quot;jQuery('&lt;div class=\&quot;\#{(classes + url_hash[:class].to_a).compact.join(' ')}\&quot; /&gt;')\n.text('\#{escape_javascript(url_hash[:name])}')\n.click(\nfunction(){\nvar ary = jQuery('#\#{@table_id}').jqGrid('getGridParam', 'selarrrow');\nif(!ary.length)\nary = new Array();\nary.push(jQuery('#\#{@table_id}').jqGrid('getGridParam', 'selrow'));\nary = ary.filter(function(elm){ return elm != null &amp;&amp; elm.length });\nif(!ary.length &amp;&amp; \#{format_type_to_js(!url_hash[:single])}){\nalert('Please select items from table first.');\n} else {\nif(!ary.length){\n\#{\nif(url_hash[:remote])\n\&quot;jQuery.get('\#{url_hash[:url]}');\&quot;\nelse\n\&quot;window.location = '\#{url_hash[:url]}/';\&quot;\nend\n}\n}\nelse{\n\#{\nif(url_hash[:remote])\n\&quot;jQuery.get(\n'\#{url_hash[:url]}',\n{'ids[]' :  ary}\n)\&quot;\nelse\n\&quot;\nparts = ary.map(\nfunction(item){\nreturn '&lt;input type=\\\&quot;hidden\\\&quot; name=\\\&quot;ids[]\\\&quot; value=\\\&quot;'+item+'\\\&quot;/&gt;';\n}\n);\njQuery('&lt;form action=\\\&quot;\#{url_hash[:url]}\\\&quot; method=\\\&quot;GET\\\&quot;&gt;' + parts).submit();\n\&quot;\nend\n}\n}\n}\n}\n).appendTo('#t_\#{@table_id}');\n&quot;</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000030-source'><span class="ruby-comment cmt"># File lib/jqgrid_rails/jqgrid.rb, line 198</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_toolbar_button</span>(<span class="ruby-identifier">url_hash</span>)&#x000A;      <span class="ruby-identifier">classes</span> = [<span class="ruby-value str">'grid_toolbar_item'</span>, <span class="ruby-value str">'button'</span>]&#x000A;      <span class="ruby-identifier">s</span> = <span class="ruby-value str">&quot;jQuery('&lt;div class=\&quot;\#{(classes + url_hash[:class].to_a).compact.join(' ')}\&quot; /&gt;')\n.text('\#{escape_javascript(url_hash[:name])}')\n.click(\nfunction(){\nvar ary = jQuery('#\#{@table_id}').jqGrid('getGridParam', 'selarrrow');\nif(!ary.length)\nary = new Array();\nary.push(jQuery('#\#{@table_id}').jqGrid('getGridParam', 'selrow'));\nary = ary.filter(function(elm){ return elm != null &amp;&amp; elm.length });\nif(!ary.length &amp;&amp; \#{format_type_to_js(!url_hash[:single])}){\nalert('Please select items from table first.');\n} else {\nif(!ary.length){\n\#{\nif(url_hash[:remote])\n\&quot;jQuery.get('\#{url_hash[:url]}');\&quot;\nelse\n\&quot;window.location = '\#{url_hash[:url]}/';\&quot;\nend\n}\n}\nelse{\n\#{\nif(url_hash[:remote])\n\&quot;jQuery.get(\n'\#{url_hash[:url]}',\n{'ids[]' :  ary}\n)\&quot;\nelse\n\&quot;\nparts = ary.map(\nfunction(item){\nreturn '&lt;input type=\\\&quot;hidden\\\&quot; name=\\\&quot;ids[]\\\&quot; value=\\\&quot;'+item+'\\\&quot;/&gt;';\n}\n);\njQuery('&lt;form action=\\\&quot;\#{url_hash[:url]}\\\&quot; method=\\\&quot;GET\\\&quot;&gt;' + parts + '&lt;/form&gt;').submit();\n\&quot;\nend\n}\n}\n}\n}\n).appendTo('#t_\#{@table_id}');\n&quot;</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-instance' id='method-M000018'>

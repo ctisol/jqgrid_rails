@@ -31,7 +31,7 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>Tue May 17 14:09:05 -0700 2011</span>
+          <span class='datetime'>Tue May 24 16:20:02 -0700 2011</span>
         </div>
       </div>
       <div id='content'>
@@ -40,12 +40,18 @@
             <h1><a href="../../classes/JqGridRails.html">JqGridRails</a> Quick Reference</h1>
             <h2>Assocation Values</h2>
             <h3>Accessing assocations</h3>
-            <pre>@grid.add_column('Bulletin Title', 'bulletin.title')&#x000A;&#x000A;format.json do&#x000A;  grid_response(Bulletin, params, ['bulletin.title'])&#x000A;end</pre>
+            <pre>@grid.add_column('Bulletin Title', 'bulletin.title')&#x000A;&#x000A;format.json do&#x000A;  render :json =&gt; grid_response(Bulletin, params, ['bulletin.title'])&#x000A;end</pre>
             <h3>Ordering properly on assocations</h3>
-            <pre>@grid.add_column('Bulletin Title', 'bulletin.title')&#x000A;&#x000A;format.json do&#x000A;  grid_response(Bulletin, params, {&#x000A;    'bulletin.title' =&gt; {&#x000A;      :order =&gt; 'my_bulletins.title'&#x000A;    }&#x000A;  })&#x000A;end</pre>
+            <pre>@grid.add_column('Bulletin Title', 'bulletin.title')&#x000A;&#x000A;format.json do&#x000A;  render :json =&gt; grid_response(Bulletin, params, {&#x000A;    'bulletin.title' =&gt; {&#x000A;      :order =&gt; 'my_bulletins.title'&#x000A;    }&#x000A;  })&#x000A;end</pre>
             <h2>Value Formatting</h2>
             <h3>Providing Ruby based formatting on values</h3>
-            <pre>format.json do&#x000A;  grid_response(User, params, {&#x000A;    :username =&gt; nil,&#x000A;    'core_company.name' =&gt; {&#x000A;      :formatter =&gt; lambda{|value| value.to_s.upcase}&#x000A;    },&#x000A;    :email&#x000A;  })&#x000A;end</pre>
+            <pre>format.json do&#x000A;  render :json =&gt; grid_response(User, params, {&#x000A;    :username =&gt; nil,&#x000A;    'core_company.name' =&gt; {&#x000A;      :formatter =&gt; proc{|value| value.to_s.upcase}&#x000A;    },&#x000A;    :email =&gt; nil&#x000A;  })&#x000A;end</pre>
+            <h3>Accessing base object value originated from</h3>
+            <pre>format.json do&#x000A;  render :json =&gt; grid_response(User, params, {&#x000A;    :username =&gt; nil,&#x000A;    'core_company.name' =&gt; {&#x000A;      :formatter =&gt; proc{|value,obj| &quot;#{value.to_s.upcase} - #{obj.username}&quot;}&#x000A;    },&#x000A;    :email =&gt; nil&#x000A;  })&#x000A;end</pre>
+            <p>
+            Here, the formatter will receive the current instance of User being
+            processed.
+            </p>
             <h3>Simple value mapping (applied client side)</h3>
             <pre>@grid.add_column('Active', 'active_user', :map_values =&gt; {true =&gt; 'Active', false =&gt; 'Inactive'})</pre>
             <h2>Events</h2>

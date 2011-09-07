@@ -23,10 +23,14 @@ module JqGridRails
     # Write jqGrid instructions out to page
     def jq_grid(grid)
       output = jqgrid_html(grid)
-      output << javascript_tag(grid.build)
+      output << javascript_tag(onready(grid.build))
       output.html_safe
     end
     alias_method :jqgrid, :jq_grid
+
+    def onready(content)
+      "jQuery(function() { #{content} });"
+    end
 
     def jqgrid_addrow(dom_id, idx, row_hash)
       "jQuery(\"#{convert_dom_id(dom_id)}\").add_row(#{format_type_to_js(idx)}, #{format_type_to_js(row_hash)});".html_safe

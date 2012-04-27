@@ -31,9 +31,12 @@ module JqGridRails
     # label:: label for grid column
     # field_name:: used during the grid response
     # opts:: hash containing :columns and :response keys to specify these options for column
-    def add_column(label, field_name, opts = {})
+    # location:: optional insertion location of column (:first or :last (:last is default))
+    def add_column(label, field_name, opts = {}, location = :last)
       unless(@response.has_key?(field_name))
-        @columns << { :label => label, :field_name => field_name, :column_opts => (opts[:columns] || {}) }
+        insert_location = (location.to_sym == :first)? 0 : -1
+        h = { :label => label, :field_name => field_name, :column_opts => (opts[:columns] || {}) }
+        @columns.insert(insert_location, h)
         @response[field_name] = opts[:response]
       end
     end

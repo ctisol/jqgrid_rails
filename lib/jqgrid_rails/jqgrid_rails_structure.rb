@@ -59,7 +59,8 @@ module JqGridRails
     # Generates grid that will be used in controller
     # custom_grid_options:: hash that will be added to default options for grid
     def create_grid(custom_grid_options = {})
-      grid = JqGridRails::JqGrid.new(@grid_name, default_options(custom_grid_options))
+      unique_name = @base_class.table_name + @grid_name.to_s
+      grid = JqGridRails::JqGrid.new(unique_name, default_options(custom_grid_options))
       @columns.each { |c| grid.add_column(c[:label], c[:field_name], c[:column_opts]) }
       grid
     end

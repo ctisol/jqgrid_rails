@@ -1,3 +1,7 @@
+== v1.2.5
+* Allow for a bit more flexibility when adding columns via Structure setup
+* Fix grid creation namespace conflict when dealing with multiple grids on the same page
+
 == v1.2.4
 * Add Registry/Structure support (thanks {Chris Kuttruff}[https://github.com/ckuttruff])
 

@@ -212,6 +212,7 @@ module JqGridRails
           output << resizable_grid
         end
       end
+      output.insert(0, "jQuery(document).ready(function(){ ") << "});"
       "#{@output}\n#{output}"
     end
     alias_method :to_s, :build

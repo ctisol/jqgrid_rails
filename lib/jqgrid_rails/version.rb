@@ -13,5 +13,5 @@ module JqGridRails
     end
   end
 
-  VERSION = Version.new('1.2.7')
+  VERSION = Version.new('1.2.8')
 end

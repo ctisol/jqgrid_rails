@@ -136,6 +136,8 @@ module JqGridRails
     # TODO: DRY out #apply_filtering and #apply_searching
     def apply_searching(klass, params, fields)
       unless(params[:searchField].blank?)
+        controller=params[:controller]
+        action=params[:action]
         field = discover_field(params[:searchField], fields)
         search_oper = params[:searchOper]
         search_string = params[:searchString]
@@ -147,10 +149,19 @@ module JqGridRails
             ])
           end
           if(!fields.is_a?(Hash) || fields[field][:having].blank? || fields[field][:where])
-            klass.where([
-              "#{database_name_by_string(field, klass, fields)} #{SEARCH_OPERS[search_oper].first}",
-              SEARCH_OPERS[search_oper].last.call(search_string)
-            ])
+             if controller.include?("order_port/inventory_items") && action.include?("index")
+              if field.include?("i_style_no")
+                klass.where(["style_no.value #{SEARCH_OPERS[search_oper].first}",SEARCH_OPERS[search_oper].last.call(search_string)])
+              elsif field.include?("i_classification")
+               klass.where(["B.name #{SEARCH_OPERS[search_oper].first}",SEARCH_OPERS[search_oper].last.call(search_string)])
+              elsif field.include?("i_category_name")
+                 klass.where(["A.name #{SEARCH_OPERS[search_oper].first}",SEARCH_OPERS[search_oper].last.call(search_string)])
+              else 
+                klass.where(["#{database_name_by_string(field, klass, fields)} #{SEARCH_OPERS[search_oper].first}",SEARCH_OPERS[search_oper].last.call(search_string)])
+              end
+            else
+              klass.where(["#{database_name_by_string(field, klass, fields)} #{SEARCH_OPERS[search_oper].first}",SEARCH_OPERS[search_oper].last.call(search_string)])
+            end
           end
         else
           if(fields.is_a?(Hash) && fields[field][:having])

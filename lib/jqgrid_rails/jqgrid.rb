@@ -42,7 +42,7 @@ module JqGridRails
       end
       @table_id = table_id.is_a?(String) ? table_id.gsub('#', '') : table_id
       @options = defaults.merge(args)
-      @pager_options = {:edit => false, :add => false, :del => false}
+      @pager_options = {:edit => false, :add => false, :del => false,:cloneToTop=>true}
       if(t_args = @options.delete(:filter_toolbar))
         enable_filter_toolbar(t_args.is_a?(Hash) ? t_args : nil)
       end

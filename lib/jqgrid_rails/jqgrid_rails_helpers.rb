@@ -65,6 +65,7 @@ module JqGridRails
         end
       end
       args[:ajax_args][:type] = args[:method] if hash[:remote]
+      args[:ajax_args][:dataType] = 'script' if hash[:remote]
       args
     end
 

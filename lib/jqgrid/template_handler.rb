@@ -36,6 +36,15 @@ class JQGRID < ::ActionView::TemplateHandler
       @find_opts = @opts.dup || {}
     end
     
+    def request_forgery_protection_token
+      "requestoken"
+    end
+
+    def form_authenticity_token
+      "authtoken"
+    end
+    
+    
     # template method
     def field(name, opts = {}, &block)
       @columns ||= {}

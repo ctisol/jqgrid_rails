@@ -107,7 +107,7 @@ module JqGridRails
     # Returns callable function to get current selection in array form
     def selection_array(error_when_empty=true, table_id=nil)
       dom_id = convert_dom_id(table_id || @table_id)
-      " function(){ 
+      " function(){
           ary = jQuery(#{dom_id}).jqGrid('getGridParam', 'selarrrow');
           if(!ary.length){ ary = []; }
           ary.push(jQuery(#{dom_id}).jqGrid('getGridParam', 'selrow'));
@@ -134,8 +134,8 @@ module JqGridRails
       args = extract_callback_variables(hash)
       confirm = args.delete(:confirm)
       item_id = args[:item_id].present? ? args[:item_id] : RawJS.new('id')
-      function = "function(){ 
-        rows_func = #{selection_array(true, table_id)} 
+      function = "function(){
+        rows_func = #{selection_array(true, table_id)}
         ary = rows_func();
         if(!ary.length){ return false; }
       "
@@ -169,7 +169,7 @@ module JqGridRails
         "function(){ #{confirm_if_required(confirm, "jQuery.ajax(#{format_type_to_js(args[:url])}#{args[:args_replacements]}, #{format_type_to_js(args[:ajax_args])});")} }"
       else
         randomizer = rand(99999)
-        output = " function(){ 
+        output = " function(){
             #{csrf_token_discovery(args[:method])}
             jQuery('body').append('<form id=\"jqgrid_redirector_#{randomizer}\" action=\"#{args[:url]}#{args[:args_replacements]}\" method=\"#{args[:method]}\">' + csrf_token + '</form>');"
         if(hash[:ajax_args] && hash[:ajax_args][:data])
@@ -202,7 +202,7 @@ module JqGridRails
     def build_toolbar_button(url_hash)
       url_hash[:empty_selection] ||= url_hash[:single]
       url_hash[:build_callback] ||= :selection unless url_hash[:empty_selection]
-      classes = ['grid_toolbar_item', 'button', 'ui-state-default', 'ui-corner-all']
+      classes = ['grid_toolbar_item']
       s = <<-EOS
 jQuery('<div class="#{(classes + Array(url_hash[:class])).compact.join(' ')}" />')
   .text('#{escape_javascript(url_hash[:name])}')

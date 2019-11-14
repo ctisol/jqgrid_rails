@@ -179,12 +179,13 @@ module JqGridRails
     # fields:: Fields used within grid
     # Applies any filter restrictions to result set
     #
-    # TODO: Currently this only supports AND'ing the filters. Need 
-    # to add support for grabbing groupOp from parameters and using it for
-    # joining query parameters. 
+    # ADDED support for grabbing groupOp from parameters and using it for
+    # joining query parameters (FOR ActiveRecord::Relation ONLY). 
     def apply_filtering(klass, params, fields)
-      rel = klass
-      havings = []
+      rel         = klass
+      havings     = []
+      cond_fields = []
+      cond_data   = []
       unless(params[:filters].blank?)
         filters = JSON.load(params[:filters])
         filters['rules'].each do |filter|
@@ -197,10 +198,8 @@ module JqGridRails
           end
           if(defined?(ActiveRecord::Relation) && rel.is_a?(ActiveRecord::Relation))
             if(!fields.is_a?(Hash) || fields[field][:having].blank? || fields[field][:where])
-              rel = rel.where([
-                "#{database_name_by_string(field, klass, fields)} #{SEARCH_OPERS[oper].first}",
-                SEARCH_OPERS[oper].last.call(data)
-              ])
+              cond_fields << "#{database_name_by_string(field, klass, fields)} #{SEARCH_OPERS[oper].first}"
+              cond_data << SEARCH_OPERS[oper].last.call(data)
             end
           else
             if(!fields.is_a?(Hash) || fields[field][:having].blank? || fields[field][:where])
@@ -215,7 +214,8 @@ module JqGridRails
         end
       end
       unless(havings.blank?)
-        ary = ["(#{havings.map(&:first).join(') AND (')})", *havings.map(&:last)]
+        group_op = (filters['groupOp'] == 'OR') ? ") OR (" : ") AND ("
+        ary = ["(#{havings.map(&:first).join(group_op)})", *havings.map(&:last)]
         rel = defined?(ActiveRecord::Relation) && rel.is_a?(ActiveRecord::Relation) ? rel.having(ary) : rel.scoped(:having => ary)
       end
       rel

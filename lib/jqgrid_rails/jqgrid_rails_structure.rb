@@ -9,7 +9,7 @@ module JqGridRails
       @grid_name = grid_name
       @base_class = base_class
       @columns = []
-      @scopes = [base_class.scoped]
+      @scopes = [base_class.all]
       @response = {}
     end
 

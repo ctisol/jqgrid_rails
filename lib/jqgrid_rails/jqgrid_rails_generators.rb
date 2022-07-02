@@ -14,8 +14,7 @@ module JqGridRails
       dom_id = "##{dom_id}" unless dom_id.start_with?('#')
       self << "jQuery('#{dom_id}').trigger('reloadGrid');"
     end
-
-  end 
+  end
 end
 
 if(defined?(ActionView::Helpers::PrototypeHelper::JavaScriptGenerator::GeneratorMethods))

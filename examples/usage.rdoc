@@ -110,10 +110,9 @@ The first parameter is what we are actually querying against. For simple tables 
         end
         format.json do
           grid_response(
-            Grid.scoped(
-              :include => :table, 
-              :conditions => {"#{Table.table_name}.title" => 'My Grid'}
-            ), params, ['name']
+            Grid.include(:table).where({"#{Table.table_name}.title" => 'My Grid'}),
+            params,
+            ['name']
           )
         end
       end
@@ -146,7 +145,7 @@ later with GridModel.get_grid(:index_grid)
     
     # columns
     structure.add_column('Label', 'unique_field_id', { :columns => { :hidden => true }, :response => {} })
-    structure.add_scope(GridModel.scoped)
+    structure.add_scope(GridModel.all)
 
     respond_to do |format|
       @grid = gs.create_grid( { :sortname => "unique_field_id", :sortorder => "asc" } )

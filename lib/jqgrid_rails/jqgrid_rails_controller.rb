@@ -122,7 +122,7 @@ module JqGridRails
         if(defined?(ActiveRecord::Relation) && klass.is_a?(ActiveRecord::Relation))
           klass.order("#{sorter} #{sort_ord}")
         else
-          klass.scoped(:order => "#{sorter} #{sort_ord}")
+          klass.order("#{sorter} #{sort_ord}")
         end
       else
         klass
@@ -154,15 +154,13 @@ module JqGridRails
           end
         else
           if(fields.is_a?(Hash) && fields[field][:having])
-            rel = rel.scoped(
-              :conditions => [
+            rel = rel.where([
                 "#{fields[field][:having]} #{SEARCH_OPERS[oper].first}", SEARCH_OPERS[oper].last.call(data)
               ]
             )
           end
           if(!fields.is_a?(Hash) || fields[field][:having].blank? || fields[field][:where])
-            klass.scoped(
-              :conditions => [
+            klass.where([
                 "#{database_name_by_string(field, klass, fields)} #{SEARCH_OPERS[search_oper].first}",
                 SEARCH_OPERS[search_oper].last.call(search_string)
               ]
@@ -204,8 +202,7 @@ module JqGridRails
             end
           else
             if(!fields.is_a?(Hash) || fields[field][:having].blank? || fields[field][:where])
-              rel = rel.scoped(
-                :conditions => [
+              rel = rel.where([
                   "#{database_name_by_string(field, klass, fields)} #{SEARCH_OPERS[oper].first}",
                   SEARCH_OPERS[oper].last.call(data)
                 ]
@@ -216,7 +213,7 @@ module JqGridRails
       end
       unless(havings.blank?)
         ary = ["(#{havings.map(&:first).join(') AND (')})", *havings.map(&:last)]
-        rel = defined?(ActiveRecord::Relation) && rel.is_a?(ActiveRecord::Relation) ? rel.having(ary) : rel.scoped(:having => ary)
+        rel = defined?(ActiveRecord::Relation) && rel.is_a?(ActiveRecord::Relation) ? rel.having(ary) : rel.having(ary)
       end
       rel
     end

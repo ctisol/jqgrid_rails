@@ -196,12 +196,30 @@ module JqGridRails
             havings << ["#{fields[field][:having]} #{SEARCH_OPERS[oper].first}", SEARCH_OPERS[oper].last.call(data)]
           end
           if(defined?(ActiveRecord::Relation) && rel.is_a?(ActiveRecord::Relation))
-            if(!fields.is_a?(Hash) || fields[field][:having].blank? || fields[field][:where])
-              rel = rel.where([
-                "#{database_name_by_string(field, klass, fields)} #{SEARCH_OPERS[oper].first}",
-                SEARCH_OPERS[oper].last.call(data)
-              ])
+
+            # customization for Flexo ITEM column filtering
+            if params["controller"] == "projects" && field == "item_description"
+
+              params_term = data
+              # search window above jqgrid table, can search for project_number AND/OR item_description
+              #   column filter for ITEM/item_description (in jqgrid_rails gem, jqgrid_rails_controller.rb)
+              try_project_number_first = false
+
+              project_match_ids = Project.project_ids_match_params_term(params_term, try_project_number_first)
+
+              rel = rel.where(:id => project_match_ids)
+
+            else
+
+              if(!fields.is_a?(Hash) || fields[field][:having].blank? || fields[field][:where])
+                rel = rel.where([
+                  "#{database_name_by_string(field, klass, fields)} #{SEARCH_OPERS[oper].first}",
+                  SEARCH_OPERS[oper].last.call(data)
+                ])
+              end
+
             end
+
           else
             if(!fields.is_a?(Hash) || fields[field][:having].blank? || fields[field][:where])
               rel = rel.scoped(

@@ -1,6 +1,6 @@
 module JqGridRails
   module Controller
-    
+
     # These are the valid search operators jqgrid uses
     # and the database translations for them. We use closures
     # for the value so we can modify the string if we see fit
@@ -18,7 +18,8 @@ module JqGridRails
       'ew' => ['ilike ?', lambda{|v| "%#{v}"}],
       'en' => ['not ilike ?', lambda{|v| "%#{v}"}],
       'cn' => ['ilike ?', lambda{|v| "%#{v}%"}],
-      'nc' => ['not ilike ?', lambda{|v| "%#{v}%"}]
+      'nc' => ['not ilike ?', lambda{|v| "%#{v}%"}],
+      'deq'=> ['::date = ?',  lambda{|v|v}]
     }
 
     # klass:: ActiveRecord::Base class or ActiveRecord::Relation
@@ -128,7 +129,7 @@ module JqGridRails
         klass
       end
     end
-    
+
     # klass:: ActiveRecord::Base class or ActiveRecord::Relation
     # params:: Request params
     # fields:: Fields used within grid
@@ -179,9 +180,9 @@ module JqGridRails
     # fields:: Fields used within grid
     # Applies any filter restrictions to result set
     #
-    # TODO: Currently this only supports AND'ing the filters. Need 
+    # TODO: Currently this only supports AND'ing the filters. Need
     # to add support for grabbing groupOp from parameters and using it for
-    # joining query parameters. 
+    # joining query parameters.
     def apply_filtering(klass, params, fields)
       rel = klass
       havings = []
@@ -264,7 +265,7 @@ module JqGridRails
       end
       res
     end
-    
+
     private
 
     def database_name_by_string(string, klass, fields)

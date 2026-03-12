@@ -169,9 +169,15 @@ module JqGridRails
         "function(){ #{confirm_if_required(confirm, "jQuery.ajax(#{format_type_to_js(args[:url])}#{args[:args_replacements]}, #{format_type_to_js(args[:ajax_args])});")} }"
       else
         randomizer = rand(99999)
-        output = " function(){
-            #{csrf_token_discovery(args[:method])}
-            jQuery('body').append('<form id=\"jqgrid_redirector_#{randomizer}\" action=\"#{args[:url]}#{args[:args_replacements]}\" method=\"#{args[:method]}\">' + csrf_token + '</form>');"
+        if(hash[:name] == 'New Order' || hash[:name] == 'New Machine')
+          output = " function(){
+              #{csrf_token_discovery(args[:method])}
+              jQuery('body').append('<form id=\"jqgrid_redirector_#{randomizer}\" action=\"#{args[:url]}#{args[:args_replacements]}\" method=\"#{args[:method]}\" target=\"_blank\">' + csrf_token + '</form>');"
+        else
+          output = " function(){
+              #{csrf_token_discovery(args[:method])}
+              jQuery('body').append('<form id=\"jqgrid_redirector_#{randomizer}\" action=\"#{args[:url]}#{args[:args_replacements]}\" method=\"#{args[:method]}\">' + csrf_token + '</form>');"
+        end
         if(hash[:ajax_args] && hash[:ajax_args][:data])
           output << "var args = #{format_type_to_js(hash[:ajax_args][:data])};
             jQuery(Object.keys(args)).each(function(idx,key){
